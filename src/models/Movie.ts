@@ -6,6 +6,7 @@ export interface IMovie {
   genre: string;
   sinopse: string;
   banner: string;
+  play: string;
   year: string;
 }
 
@@ -23,6 +24,10 @@ const MovieSchema: Schema = new Schema({
     required: true
   },
   banner: {
+    type: String,
+    required: true
+  },
+  play: {
     type: String,
     required: true
   },
