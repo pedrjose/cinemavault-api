@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/pedrjose/cinemavault-api#readme",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.17",
     "@types/node": "^20.3.2",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
