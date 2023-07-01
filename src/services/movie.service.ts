@@ -1,6 +1,7 @@
 import {
   insertMovieRepository,
-  findMovieByGenreRepository
+  findMovieByGenreRepository,
+  findMovieByNameRepository
 } from "../repositories/movie.repository";
 
 export const insertMovieService = async (
@@ -34,4 +35,14 @@ export const findMovieByGenreService = async (genre: string) => {
   if (!movies || movies.length === 0) throw new Error("Genre not found!");
 
   return movies;
+};
+
+export const findMovieByNameService = async (title: string) => {
+  if (!title) throw new Error("Submit the required field!");
+
+  const movie = await findMovieByNameRepository(title);
+
+  if (!movie) throw new Error("Movie not finded on catalog!");
+
+  return movie;
 };

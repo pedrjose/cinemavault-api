@@ -15,3 +15,7 @@ export interface EncodeResult {
 export interface MovieGenre {
   genre: string;
 }
+
+export interface MovieTitle {
+  title: string;
+}
