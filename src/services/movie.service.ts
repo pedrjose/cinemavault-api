@@ -42,7 +42,8 @@ export const findMovieByNameService = async (title: string) => {
 
   const movie = await findMovieByNameRepository(title);
 
-  if (!movie) throw new Error("Movie not finded on catalog!");
+  if (!movie || movie.length === 0)
+    throw new Error("Movie not finded on catalog!");
 
   return movie;
 };
