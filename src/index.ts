@@ -1,5 +1,6 @@
 import * as express from "express";
 import { connectDatabase } from "./database/db";
+import { corsAuth } from "./middlewares/cors.middleware";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -10,8 +11,8 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());
-app.use("/user", userRoute);
-app.use("/movie", movieRoute);
+app.use("/user", corsAuth, userRoute);
+app.use("/movie", corsAuth, movieRoute);
 
 connectDatabase();
 
