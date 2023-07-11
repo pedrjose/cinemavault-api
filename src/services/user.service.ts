@@ -1,7 +1,8 @@
 import * as bcrypt from "bcrypt";
 import {
   createUserRepository,
-  findUserByEmailRepository
+  findUserByEmailRepository,
+  validateEmailRepository
 } from "../repositories/user.repository";
 import { encodeSession } from "./support.service";
 import { PartialSession } from "../types/custom.types";
@@ -9,7 +10,11 @@ import { PartialSession } from "../types/custom.types";
 export const createUserService = async (email: string, password: string) => {
   if (!email || !password) throw new Error("Submit all required fields!");
 
-  const create = await createUserRepository({ email, password });
+  const create = await createUserRepository({
+    email,
+    password,
+    validated: false
+  });
 
   if (!create) throw new Error("User creating error. Try again!");
 
@@ -27,6 +32,9 @@ export const loginUserService = async (email: string, password: string) => {
   const user = await findUserByEmailRepository(email);
 
   if (!user) throw new Error("Email or Password not found!");
+
+  if (!user.validated)
+    throw new Error("It's not possible to log in with unverified emails!");
 
   const passwordIsValid = await bcrypt.compare(password, user.password);
 
@@ -52,4 +60,10 @@ export const loginUserService = async (email: string, password: string) => {
     email: user.email,
     promise: true
   };
+};
+
+export const validateEmailService = async (email: string) => {
+  await validateEmailRepository(email);
+
+  return { message: "Email validated successfully!" };
 };
