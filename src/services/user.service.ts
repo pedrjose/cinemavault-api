@@ -22,7 +22,7 @@ export const createUserService = async (email: string, password: string) => {
 
   return {
     message:
-      "User created successfully. A verification code has been sent to your email inbox. Please check it to proceed, and welcome to Cinemavault!",
+      "Verify code sent to email inbox or SPAM box!",
     verify: verifyEmailCode,
     promise: true
   };
