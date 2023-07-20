@@ -11,7 +11,7 @@ import {
 
 router.post("/insert-movie", insertMovieController);
 router.get("/find-by-genre", authMiddleware, findMovieByGenreController);
-router.get("/find-by-name", authMiddleware, findMovieByNameController);
+router.get("/find-by-name/:title", authMiddleware, findMovieByNameController);
 router.get("/:id", authMiddleware, findMovieByIdController);
 
 export default router;

@@ -71,7 +71,7 @@ export const findMovieByNameController = async (
   req: Request,
   res: Response
 ) => {
-  const { title }: MovieTitle = req.body;
+  const { title } = req.params;
 
   try {
     const movie = await findMovieByNameService(title);
