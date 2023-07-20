@@ -44,7 +44,7 @@ export const findMovieByGenreController = async (
   req: Request,
   res: Response
 ) => {
-  const { genre }: MovieGenre = req.body;
+  const { genre } = req.params;
 
   try {
     const genreMovies = await findMovieByGenreService(genre);
