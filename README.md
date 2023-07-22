@@ -1,2 +1,2 @@
-# cinemavault-api
+# Cinemavault API
  
