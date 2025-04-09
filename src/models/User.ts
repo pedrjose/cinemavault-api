@@ -17,12 +17,25 @@ export interface IValidate {
   email: string;
 }
 
+const MovieSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    genre: { type: String, required: true },
+    sinopse: { type: String, required: true },
+    banner: { type: String, required: true },
+    play: { type: String, required: true },
+    year: { type: String, required: true }
+  },
+  { _id: false }
+);
+
 const UserSchema: Schema = new Schema({
   email: {
     type: String,
     required: true,
     unique: true,
-    lowercase: true
+    lowercase: true,
+    trim: true
   },
   password: {
     type: String,
@@ -31,7 +44,18 @@ const UserSchema: Schema = new Schema({
   },
   validated: {
     type: Boolean,
-    required: true
+    required: true,
+    default: false
+  },
+  favoriteMovies: {
+    type: [MovieSchema],
+    required: true,
+    default: []
+  },
+  watchLaterMovies: {
+    type: [MovieSchema],
+    required: true,
+    default: []
   }
 });
 
